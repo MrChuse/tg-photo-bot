@@ -5,6 +5,7 @@ from traceback import print_exc
 from threading import Thread
 import datetime
 import time
+import sys
 
 import telebot
 from telebot import types
@@ -75,6 +76,7 @@ def send_photos_each_day():
         schedule.run_pending()
         time.sleep(1) # wait one minute
 
-
+if sys.argv[1] == 'sendnow':
+    send_photos()
 Thread(target=send_photos_each_day, daemon=True).start()
 bot.infinity_polling()
